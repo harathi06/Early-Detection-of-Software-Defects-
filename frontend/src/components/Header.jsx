@@ -63,7 +63,7 @@ export default function Header({
 
         {/* GitHub link */}
         <a 
-          href="https://github.com/harathi06/software-defect-detection-ml" 
+          href="https://github.com/harathi06/Early-Detection-of-Software-Defects-" 
           target="_blank" 
           rel="noopener noreferrer"
           className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"

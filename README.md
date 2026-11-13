@@ -67,7 +67,7 @@ Based on research and experiments by **Dimitrios Iatropoulos** & **Panagiotis Io
 ## 🏗️ Project Architecture
 
 ```
-software-defect-detection-ml/
+Early-Detection-of-Software-Defects-/
 ├── backend/                            # Python FastAPI Service
 │   ├── main.py                         # API endpoints, CORS, routers
 │   ├── ml/
@@ -106,8 +106,8 @@ software-defect-detection-ml/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/harathi06/software-defect-detection-ml.git
-cd software-defect-detection-ml
+git clone https://github.com/harathi06/Early-Detection-of-Software-Defects-.git
+cd Early-Detection-of-Software-Defects-
 ```
 
 ### 2. Start the Backend API
