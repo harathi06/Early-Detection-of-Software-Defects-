@@ -30,8 +30,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-UPLOAD_DIR = os.path.join(os.path.dirname(__file__), 'uploads')
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# Use /tmp for uploads if read-only filesystem or serverless
+UPLOAD_DIR = os.path.join('/tmp', 'uploads') if os.path.exists('/tmp') else os.path.join(os.path.dirname(__file__), 'uploads')
+try:
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+except Exception:
+    pass
 
 
 class TrainRequest(BaseModel):

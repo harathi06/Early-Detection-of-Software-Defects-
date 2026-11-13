@@ -6,7 +6,17 @@ import time
 import numpy as np
 from sklearn.model_selection import cross_validate, train_test_split
 from sklearn.metrics import make_scorer, confusion_matrix, accuracy_score, f1_score
-from imblearn.metrics import geometric_mean_score
+
+def geometric_mean_score(y_true, y_pred, average='binary'):
+    """
+    Pure NumPy/Scikit-Learn implementation of Geometric Mean Score:
+    sqrt(Sensitivity * Specificity), identically matching imblearn.metrics.geometric_mean_score.
+    """
+    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
+    tn, fp, fn, tp = cm.ravel()
+    sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+    specificity = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+    return float(np.sqrt(sensitivity * specificity))
 
 from .models import build_pipeline
 from .preprocessor import load_dataset
