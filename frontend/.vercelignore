@@ -3,7 +3,3 @@ dist
 dist-ssr
 .vercel
 .git
-__pycache__
-*.pyc
-uploads/*
-!uploads/.gitkeep
