@@ -36,13 +36,17 @@ export default function ModelTraining({ activeDataset, setActiveDataset }) {
     { id: 'Standard', name: 'Feature Standardization', desc: 'Zero mean, unit variance scaling' }
   ];
 
+  const [error, setError] = useState(null);
+
   const handleTrain = async () => {
     setTraining(true);
+    setError(null);
     try {
       const res = await trainModelApi(activeDataset, selectedClassifier, selectedNormalization);
       setResults(res);
     } catch (err) {
       console.error(err);
+      setError(err.message || 'Failed to connect to ML backend. Please ensure the backend is running.');
     } finally {
       setTraining(false);
     }
@@ -87,6 +91,16 @@ export default function ModelTraining({ activeDataset, setActiveDataset }) {
           </button>
         </div>
       </div>
+
+      {error && (
+        <div className="p-4 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-3">
+          <AlertCircle className="h-5 w-5 text-rose-400 shrink-0" />
+          <div>
+            <div className="font-semibold text-rose-200">ML Training Error</div>
+            <div className="mt-0.5 opacity-90">{error}</div>
+          </div>
+        </div>
+      )}
 
       {/* Selectors Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

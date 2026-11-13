@@ -54,14 +54,18 @@ export default function DefectPrediction({ activeDataset, setActiveDataset }) {
     setPrediction(null);
   };
 
+  const [error, setError] = useState(null);
+
   const handlePredict = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
     try {
       const res = await predictDefectApi(activeDataset, selectedClassifier, selectedNormalization, features);
       setPrediction(res);
     } catch (err) {
       console.error(err);
+      setError(err.message || 'Defect prediction failed. Please ensure the ML backend is reachable.');
     } finally {
       setLoading(false);
     }
@@ -107,6 +111,16 @@ export default function DefectPrediction({ activeDataset, setActiveDataset }) {
           </div>
         </div>
       </div>
+
+      {error && (
+        <div className="p-4 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-3">
+          <AlertTriangle className="h-5 w-5 text-rose-400 shrink-0" />
+          <div>
+            <div className="font-semibold text-rose-200">Prediction Engine Error</div>
+            <div className="mt-0.5 opacity-90">{error}</div>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Features Input Form */}

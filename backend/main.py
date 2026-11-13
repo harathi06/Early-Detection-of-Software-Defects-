@@ -21,12 +21,12 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS setup for Vercel and local development
+# CORS setup for Vercel, Render, and local development
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS", "HEAD"],
     allow_headers=["*"],
 )
 
