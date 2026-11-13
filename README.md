@@ -6,9 +6,14 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8.svg?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.6-F7931E.svg?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![Vercel Deployed](https://img.shields.io/badge/Vercel-Deployed-black.svg?logo=vercel&logoColor=white)](https://vercel.com/)
+[![Vercel Deployed](https://img.shields.io/badge/Vercel-Live_Frontend-black.svg?logo=vercel&logoColor=white)](https://frontend-omega-indol-60.vercel.app)
+[![Render Backend](https://img.shields.io/badge/Render-Live_Backend-46E3B7.svg?logo=render&logoColor=white)](https://early-detection-of-software-defects.onrender.com)
 
-A modern, interactive AI/ML web application for automated **Software Defect Detection**, predicting fault-prone software modules using McCabe cyclomatic complexity and Halstead software science metrics. 
+A modern, interactive AI/ML web application for automated **Software Defect Detection**, predicting fault-prone software modules using McCabe cyclomatic complexity and Halstead software science metrics.
+
+- **Live Frontend**: [https://frontend-omega-indol-60.vercel.app](https://frontend-omega-indol-60.vercel.app)
+- **Live Render Backend API**: [https://early-detection-of-software-defects.onrender.com](https://early-detection-of-software-defects.onrender.com)
+- **Interactive Swagger Docs**: [https://early-detection-of-software-defects.onrender.com/docs](https://early-detection-of-software-defects.onrender.com/docs)
 
 Based on research and experiments by **Dimitrios Iatropoulos** & **Panagiotis Ioannou**, converted into a complete, professional production web dashboard with live model training, defect risk inference, and empirical model benchmarks.
 
@@ -138,12 +143,14 @@ The React application is pre-configured for Vercel deployment with `frontend/ver
 3. Set **Framework Preset** to `Vite`.
 4. (Optional) Set Environment Variable `VITE_API_URL` to your hosted backend API URL.
 
-### Backend Deployment (Render / Railway / Hugging Face Spaces)
-The backend includes `render.yaml` and `Procfile`:
-1. Create a Web Service on [Render](https://render.com).
-2. Set Root Directory to `backend`.
-3. Build Command: `pip install -r requirements.txt`.
-4. Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`.
+### Architecture & Production Deployment
+- **Frontend (Vercel)**: React 19 + Vite + Tailwind CSS deployed at [https://frontend-omega-indol-60.vercel.app](https://frontend-omega-indol-60.vercel.app).
+- **Backend (Render)**: FastAPI + Scikit-Learn + Uvicorn deployed at [https://early-detection-of-software-defects.onrender.com](https://early-detection-of-software-defects.onrender.com).
+- **Environment Variable**: `VITE_API_URL` routes all frontend API calls directly to the Render service.
+
+### Limitations & Notes
+- **Render Free Tier Spin-Down**: Render's free tier automatically spins down web services after 15 minutes of inactivity. When accessed after being idle, the service takes approximately 30–50 seconds to complete a cold-start boot. Once awake, subsequent requests respond in milliseconds.
+- **Dataset Size & Training**: 5-Fold cross-validation on larger datasets (e.g. JM1 with 10,880 modules) with ensemble models (e.g. Random Forest with 100 trees) can take 20–40 seconds of compute time on single-core containers. Pre-computed empirical benchmarks from the research are also cached and available instantly via `/api/comparison`.
 
 ---
 
