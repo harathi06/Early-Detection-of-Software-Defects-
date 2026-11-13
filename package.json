@@ -1,0 +1,7 @@
+{
+  "name": "early-detection-of-software-defects",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build"
+  }
+}
